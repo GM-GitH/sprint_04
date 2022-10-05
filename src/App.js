@@ -8,7 +8,7 @@ import Rooms from "./pages/Rooms";
 import Bookings from "./pages/Bookings";
 import Contact from "./pages/Contact";
 import Users from "./pages/Users";
-import { ContextProvider } from "./context/GlobalContext";
+import { ContextProvider } from "./context/AuthContext";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -26,11 +26,11 @@ function App() {
 
   return (
     <Router basename="/sprint_04">
-      {/* <div style={{ position:"relative", display: "inline-block", width: "100%", backgroundColor:"gray", zIndex:"0"}}>
+      <div style={{ position:"relative", display: "inline-block", width: "100%", backgroundColor:"gray", zIndex:"0"}}>
         <Link to="/login">Login </Link>
         <Link to="/"> | Dashboard</Link>
       {user ? <button style={{ float: "right", padding: "5px"}} onClick={logout}>Logout</button> : <button style={{ float: "right", padding: "5px"}} onClick={login}>Login</button>}
-      </div>  */}
+      </div> 
 
 
       <ContextProvider>

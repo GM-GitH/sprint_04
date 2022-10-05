@@ -1,32 +1,34 @@
-import userlogo from "../assets/icon/user.svg"; 
+import userlogo from "../assets/icon/user.svg";
 import { useContext, useEffect, useState } from "react";
 import { ButtonGreen } from "../components/styled/StyledBtn";
 import { Container, Form, H2, Label, P, Subcontainer } from "../components/styled/StyledLogin";
 import styled from "styled-components";
-import { GlobalContext } from "../context/GlobalContext";
+import { AuthContext } from "../context/AuthContext";
 // import { useNavigate } from "react-router-dom";
 
 let Input = styled.input`
-font-size: 18px;
-padding: 5px;
-margin-bottom: 30px;
-border: none;
-outline: none;
-border-bottom: 2px solid #c5c5c5;
+  font-size: 18px;
+  padding: 5px;
+  margin-bottom: 30px;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #c5c5c5;
 `;
 
-const Login = ({user, setUser}) => {
+const Login = ({ setUser }) => {
   const [email, setEmail] = useState("admin@example.com");
   const [password, setPassword] = useState("example");
-  const { usersList, toggleAuth } = useContext(GlobalContext);
+  const { userLogin } = useContext(AuthContext);
+
   // const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email === "admin@example.com" && password === "example") {
-      setUser({"email": email, "password": password})
+      setUser({ email: email, password: password });
       localStorage.setItem("isLogin", true);
-      toggleAuth(usersList[0].id)
-    } return
+      userLogin();
+    }
+    return;
     // else {Input = styled.input`
     // font-size: 18px;
     // padding: 5px;
@@ -36,7 +38,7 @@ const Login = ({user, setUser}) => {
     // border-bottom: 2px solid red;`}
     // return navigate("/login")
   };
-  
+
   useEffect(() => {
     document.title = "Dashboard | Login";
   }, []);
@@ -51,7 +53,9 @@ const Login = ({user, setUser}) => {
           <Input type="email" name="email" id="email" placeholder="email" defaultValue="admin@example.com" required onChange={(e) => setEmail(e.target.value)} />
           <Label>Password:</Label>
           <Input type="password" name="password" id="password" placeholder="password" defaultValue="example" required onChange={(e) => setPassword(e.target.value)} />
-          <ButtonGreen type="submit" name="submit" id="submit">Login</ButtonGreen>
+          <ButtonGreen type="submit" name="submit" id="submit">
+            Login
+          </ButtonGreen>
           <P>*Just click "Login" to start.</P>
         </Form>
       </Subcontainer>
@@ -59,4 +63,4 @@ const Login = ({user, setUser}) => {
   );
 };
 
-export default Login
+export default Login;

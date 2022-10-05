@@ -8,7 +8,7 @@ import bookings from "../../assets/icon/3bookings.png";
 import users from "../../assets/icon/4users.png";
 import contact from "../../assets/icon/5guest.png";
 import { ButtonGreen, ButtonRed } from "./StyledBtn";
-import { GlobalContext } from "../../context/GlobalContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const Styles = styled.div`
   .logo {
@@ -167,13 +167,13 @@ const NavbarStyle = styled.div`
 function LeftbarAnimated({ logout, children }) {
   const [leftbar, setleftbar] = useState(false);
   const showleftbar = () => setleftbar(!leftbar);
-  const { usersList, toggleAuth } = useContext(GlobalContext);
+  const { user, userLogout } = useContext(AuthContext);
   const isLogin = localStorage.getItem("isLogin");
   const navigate = useNavigate();
   function handleLocalStorage() {
     localStorage.removeItem("isLogin");
     logout();
-    toggleAuth(usersList[0].id);
+    userLogout()
     navigate("/login");
   }
   return (
@@ -200,8 +200,8 @@ function LeftbarAnimated({ logout, children }) {
           <div className="card">
             <div className="card__photo"></div>
             <div className="card__text">
-              <p className="card__text__p1">{usersList[0].name}</p>
-              <p className="card__text__p2">{usersList[0].email}</p>
+              <p className="card__text__p1">{user.name}</p>
+              <p className="card__text__p2">{user.email}</p>
             </div>
             <ButtonGreen className="card__text__btn">Contact Us</ButtonGreen>
           </div>
@@ -224,7 +224,6 @@ function LeftbarAnimated({ logout, children }) {
                 <span className="material-symbols-outlined">mail</span>
                 <span className="material-symbols-outlined">notifications</span>
                 <span className="material-symbols-outlined">chat</span>
-                {/******************************* MUST CLICK TWICE TEMPORARILY BY LOCAL STORAGE AND STATE ********************************/}
                 <ButtonRed id="logout" onClick={isLogin ? handleLocalStorage : logout}>
                   {/* {isLogin ? "Logout" : "Confirm"} */}
                   Logout

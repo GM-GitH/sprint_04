@@ -1,41 +1,34 @@
 export default function appReducer(state, action) {
   switch (action.type) {
-    case "ADD_USER":
-      return {
-        ...state,
-        usersList: [...state.usersList, action.payload],
-      };
-    case "UPDATE_USER": {
-      const updatedUser = action.payload;
+    case "USER_LOGIN":
+      return action.payload ;
 
-      const updatedUsersList = state.usersList.map((user) => {
-        if (user.id === updatedUser.id) {
-          updatedUser.auth = user.auth;
-          return updatedUser;
-        }
-        return user;
-      });
-      return {
-        ...state,
-        usersList: updatedUsersList,
-      };
+    case "UPDATE_USER": {
+      //   const updatedUser = action.payload;
+      //   const updatedUsersList = state.usersList.map((user) => {
+      //     if (user.id === updatedUser.id) {
+      //       updatedUser.auth = user.auth;
+      //       return updatedUser;
+      //     }
+      //     return user;
+      //   });
+      //   return {
+      //     ...state,
+      //     usersList: updatedUsersList,
+      //   };
+      // }
+      return action.payload;
     }
-    case "DELETE_USER":
-      return {
-        ...state,
-        usersList: state.usersList.filter((user) => user.id !== action.payload),
-      };
+
+    case "USER_LOGOUT":
+      // return {
+      //   ...state,
+      //   usersList: state.usersList.filter((user) => user.id !== action.payload),
+      // };
+      return action.payload;
+
     case "TOGGLE_AUTH":
-      const updatedUsersList = state.usersList.map((user) => {
-        if (user.id === action.payload) {
-          return { ...user, auth: !user.auth };
-        }
-        return user;
-      });
-      return {
-        ...state,
-        usersList: updatedUsersList,
-      };
+      return { ...state, auth: !state.auth };
     default:
       return state;
   }

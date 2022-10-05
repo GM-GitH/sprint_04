@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { GlobalContext } from "../../context/GlobalContext";
+import { AuthContext } from "../../context/AuthContext";
 import { ButtonRed } from "./StyledBtn";
 
 const NavbarStyle = styled.div`
@@ -91,12 +91,12 @@ const NavbarStyle = styled.div`
 export const NavbarContent = ({ logout }) => {
   const isLogin = localStorage.getItem("isLogin");
   const navigate = useNavigate();
-  const { usersList, toggleAuth } = useContext(GlobalContext);
+  const { id, toggleAuth } = useContext(AuthContext);
 
   function handleLocalStorage() {
     localStorage.removeItem("isLogin");
     logout();
-    toggleAuth(usersList[0].id)
+    toggleAuth(id)
     navigate("/login");
   }
   return (
