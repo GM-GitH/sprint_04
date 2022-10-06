@@ -5,8 +5,8 @@ const isLogin = localStorage.getItem("isLogin");
 
 const initialState = 
     {
-      id: isLogin ? 1 : null,
-      name: isLogin ? "Willy" : null,
+      id: isLogin ? "1" : null,
+      name: isLogin ? "William Johanson" : null,
       email: isLogin ? "email@example.com" : null,
       auth: isLogin ? true : false,
     };
@@ -19,7 +19,7 @@ export const ContextProvider = ({ children }) => {
   function userLogin() {
     dispatch({
       type: "USER_LOGIN",
-      payload: { id: 1, name: "Will", email: "sample", auth: true },
+      payload: { id: 1, name: "William Johanson", email: "email@example.com", auth: true },
     });
   }
 
