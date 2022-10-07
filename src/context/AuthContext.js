@@ -16,17 +16,17 @@ export const AuthContext = createContext(initialState);
 export const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
-  function userLogin() {
+  function userLogin(user) {
     dispatch({
       type: "USER_LOGIN",
-      payload: { id: 1, name: "William Johanson", email: "email@example.com", auth: true },
+      payload: user,
     });
   }
 
-  function userLogout() {
+  function userLogout(user) {
     dispatch({
       type: "USER_LOGOUT",
-      payload: { id: null, name: null, email: null, auth: false },
+      payload: user,
     });
   }
 

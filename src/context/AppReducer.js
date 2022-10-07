@@ -1,7 +1,7 @@
 export default function appReducer(state, action) {
   switch (action.type) {
     case "USER_LOGIN":
-      return action.payload ;
+      return { id: 1, name: "William Johanson", email: "email@example.com", auth: true };
 
     case "UPDATE_USER": {
       //   const updatedUser = action.payload;
@@ -17,7 +17,7 @@ export default function appReducer(state, action) {
       //     usersList: updatedUsersList,
       //   };
       // }
-      return action.payload;
+      return { id: 1, name: "William Johanson", email: "email@example.com", auth: true };
     }
 
     case "USER_LOGOUT":
@@ -25,7 +25,7 @@ export default function appReducer(state, action) {
       //   ...state,
       //   usersList: state.usersList.filter((user) => user.id !== action.payload),
       // };
-      return action.payload;
+      return { id: null, name: null, email: null, auth: false };
 
     case "TOGGLE_AUTH":
       return { ...state, auth: !state.auth };

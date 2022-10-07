@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import jsonRooms from "../../json/jsonRoom";
+// import jsonRooms from "../../json/jsonRoom";
 import ReactPaginate from "react-paginate";
+import { useDispatch, useSelector } from "react-redux";
+// import { fetchedRooms } from "../../features/rooms/roomsSlice";
+import { roomsList, fetchRooms } from "../../features/rooms/roomsSlice";
 
 const Style = styled.div`
   .card {
@@ -151,8 +154,20 @@ const Style = styled.div`
     cursor: default;
   }
 `;
+
 export const RoomsTable = () => {
-  const rooms = jsonRooms;
+  console.log("Rooms_loaded")
+
+
+  const rooms = useSelector(roomsList);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchRooms())
+    console.log("Thunk_dispatched")
+  }, [dispatch])
+  
+
+
   const list = rooms.slice(0, 20);
   const [page, setPage] = useState(0);
   const listItemsPerPage = 5;
@@ -176,11 +191,11 @@ export const RoomsTable = () => {
         <td>{`Floor ${room.floor} Room ${room.id}`}</td>
         <td>AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi</td>
         <td>
-          ${room.Rate}
+          ${room.rate}
           <span className="mini">/night</span>
         </td>
         <td>
-          <button className={room.Status ? "status__b1 Availible" : "status__b1 Booked"}>{room.Status ? "Availible" : "Booked"}</button>
+          <button className={room.status ? "status__b1 Availible" : "status__b1 Booked"}>{room.status ? "Availible" : "Booked"}</button>
           <button className="status__b2">⋮</button>
         </td>
       </tr>

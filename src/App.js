@@ -26,11 +26,11 @@ function App() {
 
   return (
     <Router basename="/sprint_04">
-      <div style={{ position:"relative", display: "inline-block", width: "100%", backgroundColor:"gray", zIndex:"0"}}>
+      {/* <div style={{ position:"relative", display: "inline-block", width: "100%", backgroundColor:"gray", zIndex:"0"}}>
         <Link to="/login">Login </Link>
         <Link to="/"> | Dashboard</Link>
       {user ? <button style={{ float: "right", padding: "5px"}} onClick={logout}>Logout</button> : <button style={{ float: "right", padding: "5px"}} onClick={login}>Login</button>}
-      </div> 
+      </div>  */}
 
 
       <ContextProvider>
@@ -40,6 +40,7 @@ function App() {
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="/" element={<Dashboard logout={logout} />} />
             <Route path="/rooms" element={<Rooms logout={logout} />} />
+            <Route path="/rooms/:id" element={<Rooms logout={logout} />} />
             <Route path="/bookings" element={<Bookings logout={logout} />} />
             <Route path="/users" element={<Users logout={logout} />} />
             <Route path="/users/:id" element={<h1>ID: </h1>} />

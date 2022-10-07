@@ -1,10 +1,14 @@
-import userlogo from "../assets/icon/user.svg";
-import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
 import { ButtonGreen } from "../components/styled/StyledBtn";
 import { Container, Form, H2, Label, P, Subcontainer } from "../components/styled/StyledLogin";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import { AuthContext } from "../context/AuthContext";
+import userlogo from "../assets/icon/user.svg";
+// import { useSelector } from "react-redux";
 // import { useNavigate } from "react-router-dom";
+// import {store} from "../app/store"
+// import {fetchRooms} from "../features/rooms/roomsSlice"
+// store.dispatch(fetchRooms)
 
 let Input = styled.input`
   font-size: 18px;
@@ -38,6 +42,13 @@ const Login = ({ setUser }) => {
     // border-bottom: 2px solid red;`}
     // return navigate("/login")
   };
+
+  // __________________________________________________________________________________DELETE
+  // const log = useSelector(state => state.rooms)
+  // console.log(log)
+  // console.log(fetchRooms)
+  // store.dispatch(fetchRooms)
+  // __________________________________________________________________________________DELETE
 
   useEffect(() => {
     document.title = "Dashboard | Login";
